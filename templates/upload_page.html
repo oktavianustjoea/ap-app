@@ -1,10 +1,32 @@
+{% load static i18n %}
+
 <html>
-    <head></head>
+    <head>
+        <title>XML to JSON Converter</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    </head>
     <body>
-        <p>
-            Modify this page to include a form where users can submit an XML file.
-            When they click on the submit button, the XML file should be converted into JSON and
-            returned to the user.
-        </p>
+        <div class="content container">
+            <form method="post" enctype="multipart/form-data" id="form-xml">
+                {% csrf_token %}
+                <div class="row" id="row-upload">
+                    <div class="col-lg-12 d-flex justify-content-center align-items-center text-center">
+                        <div class="card">
+                            <div class="card-body" style="padding: 100px;">
+                                <h3>{% trans "Let's convert your XML to JSON" %}</h3>
+                                <label class="btn btn-primary">
+                                    {% trans 'Upload File' %}
+                                    <input type="file" name="file" id="file" accept=".xml" hidden>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script src="{% static 'js/base.js' %}"></script>
     </body>
 </html>
